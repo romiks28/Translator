@@ -75,14 +75,22 @@ function translateBlockToRussian(text) {
 function addCopyButton() {
     const btns = document.getElementById('btns');
     const outputText = document.getElementById('outputText');
-    if (!document.getElementById('copybutton')) {
-        const copyButton = document.createElement('button');
-        copyButton.id = 'copybutton';
-        copyButton.textContent = 'Копировать перевод';
-        copyButton.onclick = function() {
-            copyTranslation();
-        };
-        btns.appendChild(copyButton);
+    
+    if (outputText.textContent.trim() !== '') {
+        if (!document.getElementById('copybutton')) {
+            const copyButton = document.createElement('button');
+            copyButton.id = 'copybutton';
+            copyButton.textContent = 'Копировать перевод';
+            copyButton.onclick = function() {
+                copyTranslation();
+            };
+            btns.appendChild(copyButton);
+        }
+    } else {
+        const copyButton = document.getElementById('copybutton');
+        if (copyButton) {
+            copyButton.parentNode.removeChild(copyButton);
+        }
     }
 }
 
