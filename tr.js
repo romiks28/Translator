@@ -108,3 +108,19 @@ function copyTranslation() {
         copyButton.textContent = 'Копировать перевод';
     }, 1500);
 }
+
+// если нет текста внутри блока перевода, то, блок исчезнет.
+
+  const outputText = document.getElementById('outputText');
+
+  function toggleDisplay() {
+    if (outputText.textContent.trim().length === 0) {
+      outputText.style.display = 'none';
+    } else {
+      outputText.style.removeProperty('display');
+    }
+  }
+
+  toggleDisplay();
+
+  outputText.addEventListener('DOMSubtreeModified', toggleDisplay);
